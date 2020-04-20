@@ -17,3 +17,9 @@ Run:
 Run:
 
     yarn build
+
+## Run linter
+
+To check code quality, run:
+
+    yarn lint
