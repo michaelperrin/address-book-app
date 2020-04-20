@@ -20,6 +20,14 @@ Run:
 
 ## Run linter
 
-To check code quality, run:
+Check JS coding standards:
+
+    yarn lint:scripts
+
+Check Sass coding standards:
+
+    yarn lint:styles
+
+To check both:
 
     yarn lint
