@@ -1,24 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import fetchUsers from '../api/users';
 
-const useUsers = (page = 0, perPage = 50) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+const BATCH_SIZE = 50;
+const MAX_ITEMS = 200;
 
-  useEffect(() => {
+const useUsers = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const loadMore = () => {
     const fetchData = async () => {
       setIsLoading(true);
 
-      // console.log(await fetchUsers(page, perPage));
+      const newUsers = await fetchUsers(currentPage, BATCH_SIZE);
 
+      setUsers((currentUsers) => [...currentUsers, ...newUsers]);
+      setCurrentPage(currentPage + 1);
       setIsLoading(false);
-      setUsers(await fetchUsers(page, perPage));
     };
 
-    fetchData();
-  }, [page, perPage]);
+    if (!isLoading) {
+      fetchData();
+    }
+  };
 
-  return { isLoading, users };
+  return {
+    isLoading,
+    users,
+    loadMore,
+    hasMore: currentPage * BATCH_SIZE < MAX_ITEMS,
+  };
 };
 
 export default useUsers;

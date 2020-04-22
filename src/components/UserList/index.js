@@ -1,9 +1,14 @@
 import React from 'react';
 import useUsers from '../../hooks/useUsers';
-import UserCard from '../UserCard';
+import List from './List';
 
 const UserList = () => {
-  const { isLoading, users } = useUsers();
+  const {
+    isLoading,
+    users,
+    hasMore,
+    loadMore,
+  } = useUsers();
 
   return (
     <div>
@@ -11,19 +16,13 @@ const UserList = () => {
         User list
       </h1>
 
-      <div className="user-list">
-        {!isLoading && users.length && (
-          users.map((user) => (
-            <UserCard
-              firstname={user.name.first}
-              lastname={user.name.last}
-              username={user.username}
-              email={user.email}
-              picture={user.picture}
-            />
-          ))
-        )}
-      </div>
+      {!isLoading && users.length === 0 && (
+        <div>
+          No results.
+        </div>
+      )}
+
+      <List users={users} hasMore={hasMore} loadMore={loadMore} />
     </div>
   );
 };
