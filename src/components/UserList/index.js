@@ -7,13 +7,19 @@ const UserList = () => {
 
   return (
     <div>
-      Users
+      <h1>
+        User list
+      </h1>
 
-      <div className="card-group">
+      <div className="user-list">
         {!isLoading && users.length && (
           users.map((user) => (
             <UserCard
-              firstName={user.name.first}
+              firstname={user.name.first}
+              lastname={user.name.last}
+              username={user.username}
+              email={user.email}
+              picture={user.picture}
             />
           ))
         )}

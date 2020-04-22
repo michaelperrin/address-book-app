@@ -2,6 +2,11 @@ import axios from 'axios';
 
 const BASE_API_URL = 'https://randomuser.me/api/';
 
+/**
+ * Maps API data to standardized data
+ *
+ * @param {object} user
+ */
 const mapUser = (user) => ({
   id: user.login.uuid,
   username: user.login.username,
@@ -10,6 +15,7 @@ const mapUser = (user) => ({
     last: user.name.last,
   },
   email: user.email,
+  picture: user.picture.large,
 });
 
 /**
@@ -28,6 +34,7 @@ const fetchUsers = async (page = 0, perPage = 50) => {
 
     return users;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 
