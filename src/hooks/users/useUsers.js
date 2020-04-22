@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import fetchUsers from '../api/users';
+import fetchUsers from '../../api/users';
 
 const BATCH_SIZE = 50;
 const MAX_ITEMS = 1000;

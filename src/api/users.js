@@ -6,6 +6,7 @@ const BASE_API_URL = 'https://randomuser.me/api/';
  * Maps API data to standardized data
  *
  * @param {object} user
+ * @returns {object} Filtered user data
  */
 const mapUser = (user) => ({
   id: user.login.uuid,
@@ -23,6 +24,7 @@ const mapUser = (user) => ({
  *
  * @param {number} page    Page number
  * @param {number} perPage Number of items per page
+ * @returns {object}       List of suers
  */
 const fetchUsers = async (page = 0, perPage = 50) => {
   try {

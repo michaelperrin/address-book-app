@@ -1,8 +1,16 @@
 import React from 'react';
-import useUsers from '../../hooks/useUsers';
+import useUsers from '../../hooks/users/useUsers';
 import List from './List';
+import Filters from './Filters';
+import useFilters from '../../hooks/users/useFilters';
+import { filterUsers } from '../../utils/user';
 
 const UserList = () => {
+  const {
+    handleFiltersChange,
+    filters,
+  } = useFilters();
+
   const {
     hasLoaded,
     users,
@@ -10,11 +18,15 @@ const UserList = () => {
     loadMore,
   } = useUsers();
 
+  const filteredUsers = filterUsers(users, filters);
+
   return (
     <div className="user-list-page">
       <h1>
         User list
       </h1>
+
+      <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 
       {hasLoaded && users.length === 0 && (
         <div>
@@ -22,7 +34,7 @@ const UserList = () => {
         </div>
       )}
 
-      <List users={users} hasMore={hasMore} loadMore={loadMore} />
+      <List users={filteredUsers} hasMore={hasMore} loadMore={loadMore} />
     </div>
   );
 };
