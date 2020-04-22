@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { USER_PROP_TYPES } from '../../constants/user';
 
 const UserCard = ({
-  firstname,
-  lastname,
+  name,
   username,
   email,
   picture,
@@ -15,9 +14,9 @@ const UserCard = ({
 
     <div className="profile">
       <h3>
-        {firstname}
+        {name.first}
         {' '}
-        {lastname}
+        {name.last}
       </h3>
 
       <div className="username">{username}</div>
@@ -30,11 +29,7 @@ const UserCard = ({
 );
 
 UserCard.propTypes = {
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
+  ...USER_PROP_TYPES.isRequired,
 };
 
 export default UserCard;

@@ -1,5 +1,22 @@
-.user-list {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.user-list-page {
+  .user-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    .user-card:hover {
+      transform: scale(105%);
+      background-color: darken($card-background-color, 3%);
+      border-color: darken($card-border-color, 4%);
+      transition-property: transform, background-color, border-color;
+      transition-duration: 0.3s;
+      cursor: pointer;
+    }
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
 }
