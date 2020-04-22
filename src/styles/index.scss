@@ -1,3 +1,11 @@
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/mixins/screen-reader';
+@import "~bootstrap/scss/utilities/screenreaders";
+@import '~bootstrap/scss/spinners';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+
 @import 'common/variables';
 @import 'common/global';
 @import 'components/user-list';

@@ -1,9 +1,9 @@
 .user-card {
   display: flex;
   align-items: center;
-  background: #fff;
+  background: $card-background-color;
   border-radius: 5px;
-  border: 1px solid #eee;
+  border: 1px solid $card-border-color;
   box-shadow: 0 3px 4px $box-shadow-color;
   padding: 1rem;
 

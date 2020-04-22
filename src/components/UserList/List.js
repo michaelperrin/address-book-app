@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 import UserCard from '../UserCard';
 import { USER_PROP_TYPES } from '../../constants/user';
+import Spinner from '../Spinner';
 
 const List = ({
   users, loadMore, hasMore,
@@ -12,7 +13,11 @@ const List = ({
       pageStart={0}
       loadMore={loadMore}
       hasMore={hasMore}
-      loader={<div className="loader" key={0}>Loading ...</div>}
+      loader={(
+        <div className="spinner-container" key="spinner">
+          <Spinner />
+        </div>
+      )}
     >
       <div className="user-list">
         {users.map((user) => (

@@ -11,7 +11,7 @@ const UserList = () => {
   } = useUsers();
 
   return (
-    <div>
+    <div className="user-list-page">
       <h1>
         User list
       </h1>
