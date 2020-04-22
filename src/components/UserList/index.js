@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useUsers from '../../hooks/users/useUsers';
 import List from './List';
 import Filters from './Filters';
@@ -25,6 +26,8 @@ const UserList = () => {
       <h1>
         User list
       </h1>
+
+      <Link to="/settings">Settings</Link>
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 
