@@ -1,6 +1,7 @@
 import React from 'react';
 import useUsers from '../../hooks/useUsers';
 import List from './List';
+import Filters from './Filters';
 
 const UserList = () => {
   const {
@@ -15,6 +16,8 @@ const UserList = () => {
       <h1>
         User list
       </h1>
+
+      <Filters />
 
       {hasLoaded && users.length === 0 && (
         <div>
