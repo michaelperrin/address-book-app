@@ -4,7 +4,7 @@ import List from './List';
 
 const UserList = () => {
   const {
-    isLoading,
+    hasLoaded,
     users,
     hasMore,
     loadMore,
@@ -16,7 +16,7 @@ const UserList = () => {
         User list
       </h1>
 
-      {!isLoading && users.length === 0 && (
+      {hasLoaded && users.length === 0 && (
         <div>
           No results.
         </div>
