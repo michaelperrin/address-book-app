@@ -1,0 +1,47 @@
+.user-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  box-shadow: 0 3px 4px $box-shadow-color;
+  padding: 1rem;
+
+  .picture {
+    $picture-width: 80px;
+
+    flex-shrink: 0;
+    height: $picture-width;
+    width: $picture-width;
+
+    img {
+      border-radius: 50%;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .profile {
+    flex: 1 0 0;
+    padding: 0.2rem 0.8rem;
+    min-width: 0; // Makes text ellipsis in children work
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+
+    .username {
+      font-size: 80%;
+      color: $light-text-color;
+      margin-bottom: 0.4rem;
+    }
+
+    .email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

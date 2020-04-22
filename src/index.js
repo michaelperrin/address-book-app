@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.scss';
+import './styles/index.scss';
 import AddressBook from './AddressBook';
 import * as serviceWorker from './serviceWorker';
 
