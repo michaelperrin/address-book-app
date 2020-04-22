@@ -1,4 +1,9 @@
 .user-list-page {
+  .filters {
+    position: sticky;
+    top: 0;
+  }
+
   .user-list {
     display: grid;
     gap: 1rem;
