@@ -17,8 +17,7 @@ const List = ({
       <div className="user-list">
         {users.map((user) => (
           <UserCard
-            firstname={user.name.first}
-            lastname={user.name.last}
+            name={user.name}
             username={user.username}
             email={user.email}
             picture={user.picture}
