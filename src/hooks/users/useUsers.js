@@ -3,7 +3,7 @@ import fetchUsers from '../../api/users';
 import SettingsContext from '../../context/SettingsContext';
 
 const BATCH_SIZE = 50;
-const MAX_ITEMS = 200;
+const MAX_ITEMS = 1000;
 
 const useUsers = () => {
   const [state, setState] = useState({
