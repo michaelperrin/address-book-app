@@ -1,7 +1,14 @@
 .user-list-page {
-  .filters {
-    position: sticky;
-    top: 0;
+  @import 'user-list/filters';
+
+  > header {
+    display: flex;
+    margin: 2rem 0;
+
+    h1 {
+      margin: 0;
+      flex: 1 0 auto;
+    }
   }
 
   .user-list {
@@ -10,10 +17,10 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
     .user-card:hover {
+      box-shadow: 0 3px 4px $box-shadow-color;
       transform: scale(105%);
-      background-color: darken($card-background-color, 3%);
       border-color: darken($card-border-color, 4%);
-      transition-property: transform, background-color, border-color;
+      transition-property: transform, border-color, box-shadow;
       transition-duration: 0.3s;
       cursor: pointer;
     }

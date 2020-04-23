@@ -28,4 +28,24 @@
     background-clip: padding-box;
     padding: 0;
   }
+
+  ul.locales {
+    display: flex;
+    margin: 0 0.6rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      background: $light-background;
+      color: #fff;
+      padding: 2px 4px;
+      font-weight: bold;
+      font-size: 80%;
+      border-radius: 2px;
+
+      + li {
+        margin-left: 4px;
+      }
+    }
+  }
 }

@@ -1,9 +1,10 @@
 import React from 'react';
-import useUsers from '../../hooks/users/useUsers';
 import List from './List';
 import Filters from './Filters';
 import useFilters from '../../hooks/users/useFilters';
+import useUsers from '../../hooks/users/useUsers';
 import { filterUsers } from '../../utils/user';
+import SettingsLink from '../Settings/SettingsLink';
 
 const UserList = () => {
   const {
@@ -22,9 +23,15 @@ const UserList = () => {
 
   return (
     <div className="user-list-page">
-      <h1>
-        User list
-      </h1>
+      <header>
+        <h1>
+          User list
+        </h1>
+
+        <div className="actions">
+          <SettingsLink />
+        </div>
+      </header>
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 

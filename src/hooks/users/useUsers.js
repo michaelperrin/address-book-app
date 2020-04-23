@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import fetchUsers from '../../api/users';
+import SettingsContext from '../../context/SettingsContext';
 
 const BATCH_SIZE = 50;
 const MAX_ITEMS = 1000;
@@ -12,8 +13,16 @@ const useUsers = () => {
     hasLoaded: false,
   });
 
+  const settingsContext = useContext(SettingsContext);
+
   const getUsers = async (page) => {
-    const newNextUsers = fetchUsers(page, BATCH_SIZE);
+    const filters = {};
+
+    if (settingsContext.settings.locales) {
+      filters.locales = settingsContext.settings.locales;
+    }
+
+    const newNextUsers = fetchUsers(page, BATCH_SIZE, filters);
 
     return newNextUsers;
   };
