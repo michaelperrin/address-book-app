@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import SettingsContext from '../../context/SettingsContext';
 import { ReactComponent as SearchIcon } from './images/search-icon.svg';
 
 const Search = ({ value, handleChange }) => {
   const [focus, setFocus] = useState(false);
+  const settingsContext = useContext(SettingsContext);
 
   return (
     <div className={classNames('search-group', { active: focus })}>
@@ -20,6 +22,12 @@ const Search = ({ value, handleChange }) => {
         value={value}
         onChange={handleChange}
       />
+
+      {settingsContext.settings.locale && (
+        <div className="locale">
+          <span>{settingsContext.settings.locale}</span>
+        </div>
+      )}
     </div>
   );
 };

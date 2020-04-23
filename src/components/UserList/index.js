@@ -1,17 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import List from './List';
 import Filters from './Filters';
 import useFilters from '../../hooks/users/useFilters';
 import useUsers from '../../hooks/users/useUsers';
 import { filterUsers } from '../../utils/user';
-import SettingsContext from '../../context/SettingsContext';
+import SettingsLink from '../Settings/SettingsLink';
 
 const UserList = () => {
-  const settingsContext = useContext(SettingsContext);
-
-  console.log(settingsContext.settings);
-
   const {
     handleFiltersChange,
     filters,
@@ -28,13 +23,15 @@ const UserList = () => {
 
   return (
     <div className="user-list-page">
-      <h1>
-        User list
-      </h1>
+      <header>
+        <h1>
+          User list
+        </h1>
 
-      {settingsContext.settings.locale}
-
-      <Link to="/settings">Settings</Link>
+        <div className="actions">
+          <SettingsLink />
+        </div>
+      </header>
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 
