@@ -29,17 +29,23 @@
     padding: 0;
   }
 
-  .locale {
+  ul.locales {
+    display: flex;
     margin: 0 0.6rem;
+    padding: 0;
+    list-style: none;
 
-    > span {
-      display: inline-block;
+    li {
       background: $light-background;
       color: #fff;
       padding: 2px 4px;
       font-weight: bold;
       font-size: 80%;
       border-radius: 2px;
+
+      + li {
+        margin-left: 4px;
+      }
     }
   }
 }

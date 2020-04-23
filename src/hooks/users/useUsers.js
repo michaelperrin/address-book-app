@@ -18,8 +18,8 @@ const useUsers = () => {
   const getUsers = async (page) => {
     const filters = {};
 
-    if (settingsContext.settings.locale) {
-      filters.locale = settingsContext.settings.locale;
+    if (settingsContext.settings.locales) {
+      filters.locales = settingsContext.settings.locales;
     }
 
     const newNextUsers = fetchUsers(page, BATCH_SIZE, filters);

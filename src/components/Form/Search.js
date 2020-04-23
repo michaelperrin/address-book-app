@@ -23,10 +23,12 @@ const Search = ({ value, handleChange }) => {
         onChange={handleChange}
       />
 
-      {settingsContext.settings.locale && (
-        <div className="locale">
-          <span>{settingsContext.settings.locale}</span>
-        </div>
+      {settingsContext.settings.locales && (
+        <ul className="locales">
+          {settingsContext.settings.locales.map((locale) => (
+            <li>{locale.label}</li>
+          ))}
+        </ul>
       )}
     </div>
   );

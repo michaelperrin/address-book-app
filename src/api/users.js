@@ -29,8 +29,8 @@ const mapUser = (user) => ({
 const getFiltersForApi = (filters) => {
   const apiFilters = {};
 
-  if (filters.locale) {
-    apiFilters.nat = filters.locale.toLowerCase();
+  if (filters.locales) {
+    apiFilters.nat = filters.locales.map((locale) => locale.value.toLowerCase());
   }
 
   return apiFilters;

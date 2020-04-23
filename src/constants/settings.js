@@ -1,10 +1,10 @@
 export const DEFAULT_SETTINGS = {
-  locale: 'FR', // TODO
+  locales: null,
 };
 
 export const AVAILABLE_LOCALES = [
-  'CH',
-  'ES',
-  'FR',
-  'GB',
+  { value: 'CH', label: 'CH' },
+  { value: 'ES', label: 'ES' },
+  { value: 'FR', label: 'FR' },
+  { value: 'GB', label: 'GB' },
 ];

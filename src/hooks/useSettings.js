@@ -4,10 +4,10 @@ import { DEFAULT_SETTINGS } from '../constants/settings';
 const useSettings = () => {
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'SET_LOCALE':
+      case 'SET_LOCALES':
         return {
           ...state,
-          locale: action.locale,
+          locales: action.locales,
         };
       default:
         throw new Error();
@@ -16,9 +16,8 @@ const useSettings = () => {
 
   const [settings, dispatch] = useReducer(reducer, DEFAULT_SETTINGS);
 
-  const handleLocaleChange = (locale) => {
-    console.log('locale', locale);
-    dispatch({ type: 'SET_LOCALE', locale });
+  const handleLocaleChange = (locales) => {
+    dispatch({ type: 'SET_LOCALES', locales });
   };
 
   return {

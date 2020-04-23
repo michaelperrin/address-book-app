@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import List from './List';
 import Filters from './Filters';
 import useFilters from '../../hooks/users/useFilters';
