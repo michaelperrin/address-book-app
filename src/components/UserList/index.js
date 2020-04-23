@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import useUsers from '../../hooks/users/useUsers';
 import List from './List';
 import Filters from './Filters';
 import useFilters from '../../hooks/users/useFilters';
+import useUsers from '../../hooks/users/useUsers';
 import { filterUsers } from '../../utils/user';
+import SettingsContext from '../../context/SettingsContext';
 
 const UserList = () => {
+  const settingsContext = useContext(SettingsContext);
+
+  console.log(settingsContext.settings);
+
   const {
     handleFiltersChange,
     filters,
@@ -26,6 +31,8 @@ const UserList = () => {
       <h1>
         User list
       </h1>
+
+      {settingsContext.settings.locale}
 
       <Link to="/settings">Settings</Link>
 

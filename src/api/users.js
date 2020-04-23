@@ -20,16 +20,42 @@ const mapUser = (user) => ({
 });
 
 /**
+ * Transforms filters for the Randomuser API
+ *
+ * @param {object} filters Original filters
+ * @returns {object}       Filters for the Randomuser API
+ *
+ */
+const getFiltersForApi = (filters) => {
+  const apiFilters = {};
+
+  if (filters.locale) {
+    apiFilters.nat = filters.locale.toLowerCase();
+  }
+
+  return apiFilters;
+};
+
+/**
  * Get users from the API
  *
  * @param {number} page    Page number
  * @param {number} perPage Number of items per page
- * @returns {object}       List of suers
+ * @param {object} filters Search filters
+ * @returns {object}       List of users
  */
-const fetchUsers = async (page = 0, perPage = 50) => {
+const fetchUsers = async (page = 0, perPage = 50, filters = {}) => {
   try {
+    const urlParams = {
+      page,
+      results: perPage,
+      ...getFiltersForApi(filters),
+    };
+
+    const apiQueryString = new URLSearchParams(urlParams).toString();
+
     const users = axios
-      .get(`${BASE_API_URL}?page=${page}&results=${perPage}`)
+      .get(`${BASE_API_URL}?page=${page}&${apiQueryString}`)
       .then((response) => response.data)
       .then((data) => data.results)
       .then((rawUsers) => rawUsers.map(mapUser));
