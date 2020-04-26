@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import List from './List';
-import Filters from './Filters';
+import Filters from '../Filters';
 import useFilters from '../../hooks/users/useFilters';
 import useUsers from '../../hooks/users/useUsers';
 import { filterUsers } from '../../utils/user';

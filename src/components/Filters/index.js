@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import Search from '../Form/Search';
+import Search from './Search';
 
 const Filters = ({ filters, handleFiltersChange }) => {
   const locales = useSelector((state) => state.settings.locales);
@@ -14,7 +14,7 @@ const Filters = ({ filters, handleFiltersChange }) => {
         locales={locales}
       />
     </div>
-  )
+  );
 };
 
 Filters.propTypes = {

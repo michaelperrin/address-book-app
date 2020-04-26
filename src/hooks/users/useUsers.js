@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import fetchUsers from '../../api/users';
 
 const BATCH_SIZE = 50;

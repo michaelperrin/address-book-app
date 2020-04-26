@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes, { arrayOf } from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { ReactComponent as SearchIcon } from './images/search-icon.svg';
 
@@ -35,7 +35,7 @@ const Search = ({ value, handleChange, locales }) => {
 Search.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  locales: arrayOf(PropTypes.string),
+  locales: PropTypes.arrayOf(PropTypes.string),
 };
 
 Search.defaultProps = {
