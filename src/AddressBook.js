@@ -4,15 +4,18 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import SettingsStore from './context/SettingsStore';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
 import GlobalSpinner from './components/GlobalSpinner';
 
+const store = createStore(rootReducer);
 const UserList = lazy(() => import('./components/UserList'));
 const Settings = lazy(() => import('./components/Settings'));
 
 const AddressBook = () => (
   <Router>
-    <SettingsStore>
+    <Provider store={store}>
       <Suspense fallback={<GlobalSpinner />}>
         <div className="address-book-app">
           <div className="container">
@@ -27,7 +30,7 @@ const AddressBook = () => (
           </div>
         </div>
       </Suspense>
-    </SettingsStore>
+    </Provider>
   </Router>
 );
 

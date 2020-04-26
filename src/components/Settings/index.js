@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { AVAILABLE_LOCALES } from '../../constants/settings';
-import SettingsContext from '../../context/SettingsContext';
+import { setLocales } from '../../actions/settings';
 
 const Settings = () => {
-  const settingsContext = useContext(SettingsContext);
+  const dispatch = useDispatch();
+  const locales = useSelector((state) => state.settings.locales);
 
   return (
     <div className="settings-page">
@@ -30,8 +32,8 @@ const Settings = () => {
         <Select
           inputId="nationalities"
           isMulti
-          value={settingsContext.settings.locales}
-          onChange={(locales) => { settingsContext.handleLocaleChange(locales); }}
+          value={locales}
+          onChange={(newLocales) => { dispatch(setLocales(newLocales)); }}
           options={AVAILABLE_LOCALES}
         />
       </div>

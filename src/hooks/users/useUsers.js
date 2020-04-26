@@ -1,25 +1,25 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import fetchUsers from '../../api/users';
-import SettingsContext from '../../context/SettingsContext';
 
 const BATCH_SIZE = 50;
 const MAX_ITEMS = 1000;
 
 const useUsers = () => {
-  const [state, setState] = useState({
+  const [usersState, setUsersState] = useState({
     users: [],
     nextUsers: [],
     currentPage: 1,
     hasLoaded: false,
   });
 
-  const settingsContext = useContext(SettingsContext);
+  const locales = useSelector((state) => state.settings.locales);
 
   const getUsers = async (page) => {
     const filters = {};
 
-    if (settingsContext.settings.locales) {
-      filters.locales = settingsContext.settings.locales;
+    if (locales) {
+      filters.locales = locales;
     }
 
     const newNextUsers = fetchUsers(page, BATCH_SIZE, filters);
@@ -36,35 +36,35 @@ const useUsers = () => {
     const fetchData = async () => {
       let nextUsersList;
 
-      if (state.currentPage === 1) {
-        nextUsersList = await getUsers(state.currentPage);
+      if (usersState.currentPage === 1) {
+        nextUsersList = await getUsers(usersState.currentPage);
       } else {
-        nextUsersList = await state.nextUsers;
+        nextUsersList = await usersState.nextUsers;
       }
 
       const newState = {
-        ...state,
-        users: [...state.users, ...nextUsersList],
-        currentPage: state.currentPage + 1,
+        ...usersState,
+        users: [...usersState.users, ...nextUsersList],
+        currentPage: usersState.currentPage + 1,
         hasLoaded: true,
       };
 
       // Only load next users if we are not on the last page
-      if (!isLastPage(state.currentPage)) {
-        newState.nextUsers = getUsers(state.currentPage + 1);
+      if (!isLastPage(usersState.currentPage)) {
+        newState.nextUsers = getUsers(usersState.currentPage + 1);
       }
 
-      setState(newState);
+      setUsersState(newState);
     };
 
     fetchData();
   };
 
   return {
-    hasLoaded: state.hasLoaded,
-    users: state.users,
+    hasLoaded: usersState.hasLoaded,
+    users: usersState.users,
     loadMore,
-    hasMore: !isLastPage(state.currentPage),
+    hasMore: !isLastPage(usersState.currentPage),
   };
 };
 
