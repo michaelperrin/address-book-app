@@ -1,1 +1,3 @@
 export const SET_LOCALES = 'SET_LOCALES';
+export const LOAD_NEXT_PAGE = 'ADD_USERS';
+export const RESET_USER_SEARCH = 'RESET_USER_SEARCH';

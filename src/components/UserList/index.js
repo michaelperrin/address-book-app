@@ -1,24 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import List from './List';
 import Filters from '../Filters';
 import useFilters from '../../hooks/users/useFilters';
-import useUsers from '../../hooks/users/useUsers';
 import { filterUsers } from '../../utils/user';
 import SettingsLink from '../Settings/SettingsLink';
+import { loadMoreUsers, resetUserSearch } from '../../actions/users';
 
 const UserList = () => {
-  const {
-    handleFiltersChange,
-    filters,
-  } = useFilters();
+  const { handleFiltersChange, filters } = useFilters();
+  const locales = useSelector((state) => state.settings.locales);
+  const userState = useSelector((state) => state.users);
+  const { hasMore, users, hasLoaded } = userState;
+  const dispatch = useDispatch();
+  const loadMore = () => dispatch(loadMoreUsers(locales));
+  const resetSearch = () => dispatch(resetUserSearch());
 
-  const {
-    hasLoaded,
-    users,
-    hasMore,
-    loadMore,
-  } = useUsers();
+  useEffect(() => {
+    resetSearch();
+  }, [locales]);
 
   const filteredUsers = filterUsers(users, filters);
 
@@ -36,7 +36,7 @@ const UserList = () => {
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 
-      {hasLoaded && users.length === 0 && (
+      {hasLoaded && filteredUsers.length === 0 && (
         <div>
           No results.
         </div>
@@ -47,8 +47,4 @@ const UserList = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  locales: state.settings.locales,
-});
-
-export default connect(mapStateToProps)(UserList);
+export default UserList;
