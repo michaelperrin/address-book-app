@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes, { arrayOf } from 'prop-types';
 import classNames from 'classnames/bind';
-import SettingsContext from '../../context/SettingsContext';
 import { ReactComponent as SearchIcon } from './images/search-icon.svg';
 
-const Search = ({ value, handleChange }) => {
+const Search = ({ value, handleChange, locales }) => {
   const [focus, setFocus] = useState(false);
-  const settingsContext = useContext(SettingsContext);
 
   return (
     <div className={classNames('search-group', { active: focus })}>
@@ -23,10 +21,10 @@ const Search = ({ value, handleChange }) => {
         onChange={handleChange}
       />
 
-      {settingsContext.settings.locales && (
+      {locales && (
         <ul className="locales">
-          {settingsContext.settings.locales.map((locale) => (
-            <li>{locale.label}</li>
+          {locales.map((locale) => (
+            <li key={`locale-${locale}`}>{locale.label}</li>
           ))}
         </ul>
       )}
@@ -37,10 +35,12 @@ const Search = ({ value, handleChange }) => {
 Search.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
+  locales: arrayOf(PropTypes.string),
 };
 
 Search.defaultProps = {
   value: '',
+  locales: [],
 };
 
 export default Search;

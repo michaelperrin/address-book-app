@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import List from './List';
 import Filters from './Filters';
 import useFilters from '../../hooks/users/useFilters';
@@ -46,4 +47,8 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+const mapStateToProps = (state) => ({
+  locales: state.settings.locales,
+});
+
+export default connect(mapStateToProps)(UserList);

@@ -1,12 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Search from '../Form/Search';
 
-const Filters = ({ filters, handleFiltersChange }) => (
-  <div className="filters">
-    <Search handleChange={handleFiltersChange.search} value={filters.search} />
-  </div>
-);
+const Filters = ({ filters, handleFiltersChange }) => {
+  const locales = useSelector((state) => state.settings.locales);
+
+  return (
+    <div className="filters">
+      <Search
+        handleChange={handleFiltersChange.search}
+        value={filters.search}
+        locales={locales}
+      />
+    </div>
+  )
+};
 
 Filters.propTypes = {
   handleFiltersChange: PropTypes.shape({
