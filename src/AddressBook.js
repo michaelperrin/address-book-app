@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
-import UserList from './components/UserList';
-import Settings from './components/Settings';
 import SettingsStore from './context/SettingsStore';
+import GlobalSpinner from './components/GlobalSpinner';
+
+const UserList = lazy(() => import('./components/UserList'));
+const Settings = lazy(() => import('./components/Settings'));
 
 const AddressBook = () => (
   <Router>
     <SettingsStore>
-      <div className="address-book-app">
-        <div className="container">
-          <Switch>
-            <Route path="/settings">
-              <Settings />
-            </Route>
-            <Route path="/">
-              <UserList />
-            </Route>
-          </Switch>
+      <Suspense fallback={<GlobalSpinner />}>
+        <div className="address-book-app">
+          <div className="container">
+            <Switch>
+              <Route path="/settings">
+                <Settings />
+              </Route>
+              <Route path="/">
+                <UserList />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </SettingsStore>
   </Router>
 );
