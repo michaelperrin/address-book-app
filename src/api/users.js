@@ -17,6 +17,15 @@ const mapUser = (user) => ({
   },
   email: user.email,
   picture: user.picture.large,
+  location: {
+    street: `${user.location.street.number} ${user.location.street.name}`,
+    city: user.location.city,
+    state: user.location.state,
+    postcode: user.location.postcode,
+    country: user.location.country,
+  },
+  phone: user.phone,
+  cell: user.cell,
 });
 
 /**

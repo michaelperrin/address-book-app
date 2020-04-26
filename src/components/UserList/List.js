@@ -29,14 +29,14 @@ const List = ({
       >
         <div className="user-list">
           {users.map((user) => (
-            <div key={user.id} onClick={() => { setCurrentUser(user); }}>
-              <UserCard
-                name={user.name}
-                username={user.username}
-                email={user.email}
-                picture={user.picture}
-              />
-            </div>
+            <UserCard
+              key={user.id}
+              name={user.name}
+              username={user.username}
+              email={user.email}
+              picture={user.picture}
+              onClick={() => { setCurrentUser(user); }}
+            />
           ))}
         </div>
       </InfiniteScroll>
