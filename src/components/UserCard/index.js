@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { USER_PROP_TYPES } from '../../constants/user';
 
 const UserCard = ({
@@ -6,8 +7,9 @@ const UserCard = ({
   username,
   email,
   picture,
+  onClick,
 }) => (
-  <div className="user-card">
+  <div className="user-card" onClick={onClick} onKeyPress={onClick} role="button" tabIndex={0}>
     <div className="picture">
       <img src={picture} alt="" />
     </div>
@@ -30,6 +32,11 @@ const UserCard = ({
 
 UserCard.propTypes = {
   ...USER_PROP_TYPES.isRequired,
+  onClick: PropTypes.func,
+};
+
+UserCard.defaultProps = {
+  onClick: null,
 };
 
 export default UserCard;

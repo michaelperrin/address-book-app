@@ -8,4 +8,6 @@ export const USER_PROP_TYPES = PropTypes.shape({
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
+  phone: PropTypes.string,
+  cell: PropTypes.string,
 });
