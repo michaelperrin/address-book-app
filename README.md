@@ -1,11 +1,28 @@
 # Sherpany address book
 
+![Screenshot of the address book app](https://misc.s3.fr-par.scw.cloud/userlist.png)
+
 This address book app uses the following main libraries:
 
 * React
 * [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+* [Redux](https://redux.js.org/) with [Redux Thunk](https://github.com/reduxjs/redux-thunk) for state management.
 * [Bootstrap](https://getbootstrap.com/) (only small parts of it, only necessary CSS parts are imported)
 * [Axios](https://github.com/axios/axios) for HTTP requests.
+
+## Implemented features
+
+* User list (users are retrieved from the https://randomuser.me/ API).
+* User details when clicking on a user.
+* User search.
+* Settings page.
+* Filters.
+
+A few items that could be implemented or improved:
+
+* Better settings page (the UI of the selector is not very friendly).
+* Add unit tests (*coming soon*).
+* Customized Webpack configuration.
 
 ## Install project
 
