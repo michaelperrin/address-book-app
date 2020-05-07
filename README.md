@@ -55,3 +55,7 @@ Check Sass coding standards:
 To check both:
 
     yarn lint
+
+## Run tests
+
+    yarn test
