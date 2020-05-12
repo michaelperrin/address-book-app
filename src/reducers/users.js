@@ -1,16 +1,23 @@
-import { LOAD_NEXT_PAGE, RESET_USER_SEARCH } from '../constants/action-types';
+import { LOAD_NEXT_PAGE, RESET_USER_SEARCH, REQUEST_NEXT_PAGE } from '../constants/action-types';
 import { isLastPage } from '../utils/user';
 
 const INITIAL_STATE = {
   users: [],
   nextUsers: [],
   currentPage: 1,
-  hasLoaded: false,
+  isLoading: false,
+  isFirstLoadDone: false,
   hasMore: true,
 };
 
 const users = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case REQUEST_NEXT_PAGE:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case LOAD_NEXT_PAGE:
       return {
         ...state,
@@ -18,11 +25,19 @@ const users = (state = INITIAL_STATE, action) => {
         nextUsers: action.nextUsers,
         currentPage: state.currentPage + 1,
         hasMore: !isLastPage(state.currentPage),
-        hasLoaded: true,
+        isLoading: false,
+        isFirstLoadDone: true,
       };
 
     case RESET_USER_SEARCH:
-      return INITIAL_STATE;
+      return {
+        ...state,
+        users: [],
+        nextUsers: [],
+        currentPage: 1,
+        isFirstLoadDone: false,
+        hasMore: true,
+      };
 
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import List from './List';
 import Filters from '../Filters';
@@ -10,10 +10,10 @@ import { loadMoreUsers, resetUserSearch } from '../../actions/users';
 const UserList = () => {
   const { handleFiltersChange, filters } = useFilters();
   const locales = useSelector((state) => state.settings.locales);
+  const dispatch = useDispatch();
+  const loadMore = useCallback(() => { dispatch(loadMoreUsers(locales)); }, [locales, dispatch]);
   const userState = useSelector((state) => state.users);
   const { hasMore, users, hasLoaded } = userState;
-  const dispatch = useDispatch();
-  const loadMore = () => dispatch(loadMoreUsers(locales));
   const resetSearch = () => dispatch(resetUserSearch());
 
   useEffect(() => {

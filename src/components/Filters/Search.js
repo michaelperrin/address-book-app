@@ -24,7 +24,7 @@ const Search = ({ value, handleChange, locales }) => {
       {locales && (
         <ul className="locales">
           {locales.map((locale) => (
-            <li key={`locale-${locale}`}>{locale.label}</li>
+            <li key={`locale-${locale.value}`}>{locale.label}</li>
           ))}
         </ul>
       )}
@@ -35,7 +35,10 @@ const Search = ({ value, handleChange, locales }) => {
 Search.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  locales: PropTypes.arrayOf(PropTypes.string),
+  locales: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })),
 };
 
 Search.defaultProps = {
