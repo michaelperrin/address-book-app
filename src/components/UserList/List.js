@@ -7,7 +7,7 @@ import UserDetailsModal from '../UserDetailsModal';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 
 const List = ({
-  users, loadMore, hasMore,
+  users, loadMore, hasMore, isLoading,
 }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const userListRef = useRef(null);
@@ -16,8 +16,7 @@ const List = ({
     setCurrentUser(null);
   };
 
-  // useInfiniteScroll('.user-card:last-child', loadMore, hasMore);
-  useInfiniteScroll(userListRef, loadMore, hasMore);
+  useInfiniteScroll(users, userListRef, loadMore, hasMore, isLoading);
 
   return (
     <>
@@ -34,6 +33,10 @@ const List = ({
         ))}
       </div>
 
+      {isLoading && (
+        <Spinner />
+      )}
+
       {currentUser && (
         <UserDetailsModal user={currentUser} handleCloseModal={closeModal} />
       )}
@@ -45,6 +48,7 @@ List.propTypes = {
   users: PropTypes.arrayOf(USER_PROP_TYPES).isRequired,
   loadMore: PropTypes.func.isRequired,
   hasMore: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default List;

@@ -1,5 +1,12 @@
-import { LOAD_NEXT_PAGE, RESET_USER_SEARCH } from '../constants/action-types';
+import { LOAD_NEXT_PAGE, RESET_USER_SEARCH, REQUEST_NEXT_PAGE } from '../constants/action-types';
 import { isLastPage, getUsers } from '../utils/user';
+
+/**
+ * Action when next page of users is requested
+ */
+export const requestNextPage = () => ({
+  type: REQUEST_NEXT_PAGE,
+});
 
 /**
  * Action to load the next page of users
@@ -23,6 +30,7 @@ export const resetUserSearch = () => ({
  * @param {Array} locales List of locales for the user search
  */
 export const loadMoreUsers = (locales) => (dispatch, getState) => {
+  dispatch(requestNextPage());
   const usersState = getState().users;
 
   const fetchNewUsers = async () => {

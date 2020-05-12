@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 /**
  * Hook to automatically load data when user scrolls to the end of the list
@@ -7,34 +7,35 @@ import { useEffect } from 'react';
  * @param {function} loadMore Function that loads more items
  * @param {boolean} hasMore   True if list has more items to load
  */
-const useInfiniteScroll = (listRef, loadMore, hasMore) => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const lastElement = listRef.current.lastChild;
-      const pageOffset = window.pageYOffset + window.innerHeight;
-
-      if (lastElement.offsetTop < pageOffset && hasMore) {
-        loadMore();
-      }
-    };
-
-    const removeScrollEvent = () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-
-    if (hasMore) {
-      // Load first batch on first load
-      loadMore();
-      window.addEventListener('scroll', handleScroll);
-    } else {
-      removeScrollEvent();
+const useInfiniteScroll = (items, listRef, loadMore, hasMore, isLoading) => {
+  const handleScroll = useCallback(() => {
+    if (!hasMore || isLoading) {
+      return;
     }
 
-    // Cleanup: unmount listener when it is not used anymore
-    return () => {
-      removeScrollEvent();
-    };
-  }, [hasMore, listRef, loadMore]);
+    const lastElement = listRef.current.lastChild;
+
+    if (!lastElement) {
+      // First load if list is empty
+      loadMore();
+    }
+
+    const pageOffset = window.pageYOffset + window.innerHeight;
+
+    if (lastElement && lastElement.offsetTop < pageOffset) {
+      loadMore();
+    }
+  }, [hasMore, isLoading, listRef, loadMore]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    handleScroll();
+  }, [items]);
 };
 
 export default useInfiniteScroll;
