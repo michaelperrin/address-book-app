@@ -64,7 +64,7 @@ const fetchUsers = async (page = 0, perPage = 50, filters = {}) => {
     const apiQueryString = new URLSearchParams(urlParams).toString();
 
     const users = axios
-      .get(`${BASE_API_URL}?page=${page}&${apiQueryString}`)
+      .get(`${BASE_API_URL}?${apiQueryString}`)
       .then((response) => response.data)
       .then((data) => data.results)
       .then((rawUsers) => rawUsers.map(mapUser));
