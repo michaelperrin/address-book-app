@@ -26,6 +26,13 @@
     }
   }
 
+  .end-of-list {
+    width: 50%;
+    height: 3px;
+    background-color: $light-background;
+    margin: 40px auto;
+  }
+
   .spinner-container {
     display: flex;
     justify-content: center;

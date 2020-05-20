@@ -33,6 +33,10 @@ const List = ({
         ))}
       </div>
 
+      {!hasMore && (
+        <div className="end-of-list "/>
+      )}
+
       {isLoading && (
         <Spinner />
       )}
