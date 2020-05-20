@@ -4,7 +4,7 @@ import List from './List';
 import Filters from '../Filters';
 import useFilters from '../../hooks/users/useFilters';
 import { filterUsers } from '../../utils/user';
-import SettingsLink from '../Settings/SettingsLink';
+import SettingsLink from './SettingsLink';
 import { loadMoreUsers, resetUserSearch } from '../../actions/users';
 
 const UserList = () => {
