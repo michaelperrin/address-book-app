@@ -1,0 +1,40 @@
+[
+  {
+    "id": "18266799-e125-46cd-90b0-a3edccb0a9cb",
+    "username": "silverpanda259",
+    "name": {
+      "first": "George",
+      "last": "Abitbol"
+    },
+    "email": "jacob.roy@example.com",
+    "picture": "https://randomuser.me/api/portraits/men/14.jpg",
+    "location": {
+      "street": "8291 15th St",
+      "city": "Russell",
+      "state": "Alberta",
+      "postcode": "G3A 8J3",
+      "country": "Canada"
+    },
+    "phone": "517-996-6147",
+    "cell": "812-294-1825"
+  },
+  {
+    "id": "e282cffa-a26b-4c23-8e72-e38450d55b5c",
+    "username": "ticklishmeercat664",
+    "name": {
+      "first": "Ryan",
+      "last": "Weaver"
+    },
+    "email": "mhmdaaly.nkwnzr@example.com",
+    "picture": "https://randomuser.me/api/portraits/men/36.jpg",
+    "location": {
+      "street": "1570 جلال آل احمد",
+      "city": "خوی",
+      "state": "ایلام",
+      "postcode": 71438,
+      "country": "Iran"
+    },
+    "phone": "008-76592885",
+    "cell": "0953-966-0406"
+  }
+]
