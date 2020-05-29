@@ -34,7 +34,7 @@ const List = ({
       </div>
 
       {!hasMore && (
-        <div className="end-of-list "/>
+        <div className="end-of-list" />
       )}
 
       {isLoading && (

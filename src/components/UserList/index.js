@@ -11,15 +11,20 @@ const UserList = () => {
   const { handleFiltersChange, filters } = useFilters();
   const locales = useSelector((state) => state.settings.locales);
   const dispatch = useDispatch();
-  const loadMore = useCallback(() => { dispatch(loadMoreUsers(locales)); }, [locales, dispatch]);
-  const userState = useSelector((state) => state.users);
-  const { hasMore, users, hasLoaded } = userState;
-  const resetSearch = () => dispatch(resetUserSearch());
 
+  const resetSearch = () => dispatch(resetUserSearch());
   useEffect(() => {
     resetSearch();
   }, [locales]);
 
+  const loadMore = useCallback(() => { dispatch(loadMoreUsers(locales)); }, [locales, dispatch]);
+  const userState = useSelector((state) => state.users);
+  const {
+    hasMore,
+    users,
+    isFirstLoadDone,
+    isLoading,
+  } = userState;
   const filteredUsers = filterUsers(users, filters);
 
   return (
@@ -36,13 +41,18 @@ const UserList = () => {
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
 
-      {hasLoaded && filteredUsers.length === 0 && (
+      {isFirstLoadDone && filteredUsers.length === 0 && (
         <div>
           No results.
         </div>
       )}
 
-      <List users={filteredUsers} hasMore={hasMore} loadMore={loadMore} />
+      <List
+        users={filteredUsers}
+        hasMore={hasMore}
+        loadMore={loadMore}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
