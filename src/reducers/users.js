@@ -6,7 +6,6 @@ const INITIAL_STATE = {
   nextUsers: [],
   currentPage: 1,
   isLoading: false,
-  isFirstLoadDone: false,
   hasMore: true,
 };
 
@@ -26,7 +25,6 @@ const users = (state = INITIAL_STATE, action) => {
         currentPage: state.currentPage + 1,
         hasMore: !isLastPage(state.currentPage),
         isLoading: false,
-        isFirstLoadDone: true,
       };
 
     case RESET_USER_SEARCH:
@@ -35,7 +33,6 @@ const users = (state = INITIAL_STATE, action) => {
         users: [],
         nextUsers: [],
         currentPage: 1,
-        isFirstLoadDone: false,
         hasMore: true,
       };
 

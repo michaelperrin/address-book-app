@@ -19,12 +19,7 @@ const UserList = () => {
 
   const loadMore = useCallback(() => { dispatch(loadMoreUsers(locales)); }, [locales, dispatch]);
   const userState = useSelector((state) => state.users);
-  const {
-    hasMore,
-    users,
-    isFirstLoadDone,
-    isLoading,
-  } = userState;
+  const { hasMore, users, isLoading } = userState;
   const filteredUsers = filterUsers(users, filters);
 
   return (
@@ -40,12 +35,6 @@ const UserList = () => {
       </header>
 
       <Filters handleFiltersChange={handleFiltersChange} filters={filters} />
-
-      {isFirstLoadDone && filteredUsers.length === 0 && (
-        <div>
-          No results.
-        </div>
-      )}
 
       <List
         users={filteredUsers}

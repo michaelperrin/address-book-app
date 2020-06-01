@@ -18,6 +18,14 @@ const List = ({
 
   useInfiniteScroll(users, userListRef, loadMore, hasMore, isLoading);
 
+  if (users.length === 0 && !hasMore && !isLoading) {
+    return (
+      <div className="no-results">
+        No results.
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="user-list" ref={userListRef}>
