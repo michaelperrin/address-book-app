@@ -21,7 +21,7 @@ This address book app uses the following main libraries:
 A few items that could be implemented or improved:
 
 * Better settings page (the UI of the selector is not very friendly).
-* Add unit tests (*coming soon*).
+* More unit tests.
 * Customized Webpack configuration.
 
 ## Install project
