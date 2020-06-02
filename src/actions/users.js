@@ -1,5 +1,6 @@
 import { LOAD_NEXT_PAGE, RESET_USER_SEARCH, REQUEST_NEXT_PAGE } from '../constants/action-types';
-import { isLastPage, getUsers } from '../utils/user';
+import { isLastPage } from '../utils/user';
+import { getUsers } from '../api/users';
 
 /**
  * Action when next page of users is requested

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BATCH_SIZE } from '../constants/user';
 
 const BASE_API_URL = 'https://randomuser.me/api/';
 
@@ -76,6 +77,22 @@ const fetchUsers = async (page = 0, perPage = 50, filters = {}) => {
   }
 
   return null;
+};
+
+/**
+ * Fetches users for given page and locales.
+ *
+ * @param {number} page   Page number
+ * @param {Array} locales List of locales for the user search
+ */
+export const getUsers = async (page, locales) => {
+  const filters = {};
+
+  if (locales) {
+    filters.locales = locales;
+  }
+
+  return fetchUsers(page, BATCH_SIZE, filters);
 };
 
 export default fetchUsers;

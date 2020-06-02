@@ -1,23 +1,6 @@
 import { BATCH_SIZE, MAX_ITEMS } from '../constants/user';
-import fetchUsers from '../api/users';
 
 export const isLastPage = (page) => page * BATCH_SIZE >= MAX_ITEMS;
-
-/**
- * Fetches users for given page and locales.
- *
- * @param {number} page   Page number
- * @param {Array} locales List of locales for the user search
- */
-export const getUsers = async (page, locales) => {
-  const filters = {};
-
-  if (locales) {
-    filters.locales = locales;
-  }
-
-  return fetchUsers(page, BATCH_SIZE, filters);
-};
 
 /**
  * Filters a list of users
