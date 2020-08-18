@@ -1,4 +1,4 @@
-# Sherpany address book
+# Simple address book app
 
 ![Screenshot of the address book app](https://misc.s3.fr-par.scw.cloud/userlist.png)
 
